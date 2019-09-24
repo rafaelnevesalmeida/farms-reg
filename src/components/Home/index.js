@@ -1,1 +1,1 @@
-export { default } from './HomeContexted'
+export { default } from './HomeFed'

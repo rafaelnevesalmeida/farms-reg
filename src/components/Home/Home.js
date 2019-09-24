@@ -21,7 +21,18 @@ addLocaleData(pt)
 
 class Home extends React.Component {
   render () {
-    const { lang } = this.props
+    const {
+      lang,
+      data: { loading, error, allGeoPoints }
+    } = this.props
+
+    if (loading) {
+      return <p>Loading ...</p>
+    }
+
+    if (error) {
+      return <p>{error.message}</p>
+    }
 
     return ( // TODO change the visual props (backgroundColor) to modifier and move IntlProvider to App.js
       // TODO move sensorDates to DB
@@ -44,6 +55,16 @@ class Home extends React.Component {
               </Label>
             </Button>
           </Container>
+
+          <Container justifyContent="center" marginBottom="10px" >
+            {allGeoPoints.map((geoPoint, i) =>
+              <Label key={i} >
+                {geoPoint.id}
+              </Label>
+            )}
+
+          </Container>
+
         </Container>
       </IntlProvider>
     )

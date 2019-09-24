@@ -5,6 +5,8 @@ import GeoLocation from '../GeoLocation'
 import en from 'react-intl/locale-data/en'
 import pt from 'react-intl/locale-data/pt'
 
+import { ButtonAddPlantWithGeoPoint } from '../Buttons'
+
 import {
   MainFrame,
   // Header,
@@ -23,7 +25,6 @@ class ChangeName extends React.Component {
 
     this.getInnerRef = this.getInnerRef.bind(this)
     this.getLocation = this.getLocation.bind(this)
-    this.save = this.save.bind(this)
   }
 
   innerRef
@@ -35,13 +36,9 @@ class ChangeName extends React.Component {
     this.innerRef && this.innerRef.getLocation()
   }
 
-  save () {
-    // alert(this.props.geolocation.latitude)
-  }
-
   render () {
-    const { save, getInnerRef, getLocation } = this
-    const { lang } = this.props
+    const { getInnerRef, getLocation } = this
+    const { setStateProvider, lang } = this.props
 
     return (
       <IntlProvider locale={lang} messages={messages[lang]} >
@@ -56,12 +53,13 @@ class ChangeName extends React.Component {
             <LabelTitle>
               <FormattedMessage id='geo.label.name' /> :
             </LabelTitle>
-            <Edit width='200px' />
+            <Edit
+              width='200px'
+              onChange={(e) => setStateProvider({ geoPoint: { name: e.target.value } })}
+            />
           </ContainerLine>
           <ContainerLine justifyContent='flex-end' paddingBottom='30px'>
-            <ButtonMedium onClick={save}>
-              <FormattedMessage id='geo.button.save' />
-            </ButtonMedium>
+            <ButtonAddPlantWithGeoPoint />
           </ContainerLine>
         </MainFrame>
       </IntlProvider>

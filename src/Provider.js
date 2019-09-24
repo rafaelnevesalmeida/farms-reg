@@ -11,15 +11,23 @@ export class ContextProvider extends React.Component {
         latitude: 0,
         longitude: 0,
         altitude: 0
+      },
+      geoPoint: {
+        name: null
       }
     }
     this.updateLocation = this.updateLocation.bind(this)
+    this.setStateProvider = this.setStateProvider.bind(this)
+  }
+
+  setStateProvider (state) {
+    this.setState(state)
   }
 
   updateLocation (coords) {
     this.state.geolocation.latitude = coords.latitude
     this.state.geolocation.longitude = coords.longitude
-    this.state.geolocation.alatitude = coords.altitude
+    this.state.geolocation.altitude = coords.altitude
   }
 
   currentDate () {
@@ -37,7 +45,9 @@ export class ContextProvider extends React.Component {
       <Context.Provider value={{
         lang: this.state.lang,
         geolocation: this.state.geolocation,
-        updateLocation: this.updateLocation
+        geoPoint: this.state.geoPoint,
+        updateLocation: this.updateLocation,
+        setStateProvider: this.setStateProvider
       }}>
         {this.props.children}
       </Context.Provider>
