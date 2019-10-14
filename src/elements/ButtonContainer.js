@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const Container = styled.div`
+const ButtonContainer = styled.div`
   width: ${props => props.width || 'auto'};
   max-width: ${props => props.maxWidth || 'auto'};
   min-width: ${props => props.minWidth || 'auto'};
@@ -20,7 +20,7 @@ const Container = styled.div`
 
   display: ${props => props.display || 'flex'};
   flex-direction: ${props => props.flexDirection || 'row'};
-  justify-content: ${props => props.justifyContent || 'flex-start'};
+  justify-content: ${props => props.justifyContent || 'start'};
   align-content: ${props => props.alignContent || 'flex-start'};
   align-items: ${props => props.alignItems || 'flex-start'};
   flex-grow:  ${props => props.flexGrow || '1'};
@@ -29,4 +29,4 @@ const Container = styled.div`
   flex-wrap: ${props => props.flexWrap || 'wrap'}; // -reverse;
 `
 
-export default Container
+export default ButtonContainer

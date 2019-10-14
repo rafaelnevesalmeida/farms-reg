@@ -9,63 +9,70 @@ import messages from '../../messages'
 
 import {
   Header,
-  Container,
+  RoundContainer,
+  AreaContainer,
+  ButtonContainer,
   Label,
-  Button
+  Button,
+  LinkButton
 } from '../../elements'
-
-import { Link } from 'react-router-dom'
 
 addLocaleData(en)
 addLocaleData(pt)
 
 class Home extends React.Component {
   render () {
-    const {
-      lang,
-      data: { loading, error, allGeoPoints }
-    } = this.props
-
-    if (loading) {
-      return <p>Loading ...</p>
-    }
-
-    if (error) {
-      return <p>{error.message}</p>
-    }
+    const { lang } = this.props
 
     return ( // TODO change the visual props (backgroundColor) to modifier and move IntlProvider to App.js
       // TODO move sensorDates to DB
       <IntlProvider locale={lang} messages={messages[lang]} >
-        <Container backgroundColor='#888888' >
-          <Header paddingTop="5px">
+        <AreaContainer>
+          <Header>
             <Label>
               <FormattedMessage id='app.label' />
             </Label>
           </Header>
 
-          <Container justifyContent="center" marginBottom="10px" >
-            <Button width='75px' marginLeft='15px' >
+          <RoundContainer backgroundColor='#888888' >
+            <Header>
               <Label>
-                <nav>
-                  <Link to="/changeName">
-                    <FormattedMessage id='geo.button.new' />
-                  </Link>
-                </nav>
+                <FormattedMessage id='plant.label' />
               </Label>
-            </Button>
-          </Container>
+            </Header>
 
-          <Container justifyContent="center" marginBottom="10px" >
-            {allGeoPoints.map((geoPoint, i) =>
-              <Label key={i} >
-                {geoPoint.id}
-              </Label>
-            )}
+            <ButtonContainer>
+              <Button>
+                <Label>
+                  <nav>
+                    <LinkButton to="/changeName">
+                      <FormattedMessage id='geo.button.new' />
+                    </LinkButton>
+                  </nav>
+                </Label>
+              </Button>
+              <Button>
+                <Label>
+                  <nav>
+                    <LinkButton to="/changeName">
+                      <FormattedMessage id='geo.button.list' />
+                    </LinkButton>
+                  </nav>
+                </Label>
+              </Button>
+              <Button>
+                <Label>
+                  <nav>
+                    <LinkButton to="/changeName">
+                      <FormattedMessage id='geo.button.search' />
+                    </LinkButton>
+                  </nav>
+                </Label>
+              </Button>
 
-          </Container>
-
-        </Container>
+            </ButtonContainer>
+          </RoundContainer>
+        </AreaContainer>
       </IntlProvider>
     )
   }
