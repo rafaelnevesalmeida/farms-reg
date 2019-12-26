@@ -4,14 +4,14 @@ const AreaContainer = styled.div`
   width: ${props => props.width || 'auto'};
   max-width: ${props => props.maxWidth || 'auto'};
   min-width: ${props => props.minWidth || 'auto'};
-  height: ${props => props.height || 'auto'};
+  height: ${props => props.height || '100%'};
   min-height: ${props => props.minHeight || 'auto'};
   margin-top: ${props => props.marginTop || null};
   margin-bottom: ${props => props.marginBottom || null};
   margin-left: ${props => props.marginLeft || null};
   margin-right: ${props => props.marginRight || null};
-  padding-top: ${props => props.paddingTop || '10px'};
-  padding-bottom: ${props => props.paddingBottom || '10px'};
+  padding-top: ${props => props.paddingTop || null};
+  padding-bottom: ${props => props.paddingBottom || null};
   padding-right: ${props => props.paddingRight || '10px'};
   padding-left: ${props => props.paddingLeft || '10px'};
 

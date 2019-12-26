@@ -3,7 +3,7 @@ import styled from 'styled-components'
 const Header = styled.div`
   height: ${props => props.height || '30px'};
   width: ${props => props.width || 'auto'};
-  padding-top: ${props => props.paddingTop || null};
+  padding-top: ${props => props.paddingTop || '10px'};
   margin-bottom: ${props => props.marginBottom || '10px'};
  
 

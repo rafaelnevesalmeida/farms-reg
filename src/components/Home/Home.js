@@ -17,12 +17,28 @@ import {
   LinkButton
 } from '../../elements'
 
+import {
+  GoogleMap,
+  Marker
+} from '../../components'
+
 addLocaleData(en)
 addLocaleData(pt)
 
 class Home extends React.Component {
   render () {
-    const { lang } = this.props
+    const {
+      lang,
+      data: { loading, error, allPlants }
+    } = this.props
+
+    if (loading) {
+      return <p>Loading ...</p>
+    }
+
+    if (error) {
+      return <p>{error.message}</p>
+    }
 
     return ( // TODO change the visual props (backgroundColor) to modifier and move IntlProvider to App.js
       // TODO move sensorDates to DB
@@ -72,6 +88,15 @@ class Home extends React.Component {
 
             </ButtonContainer>
           </RoundContainer>
+          <GoogleMap />
+
+          {allPlants.map((Plant, i) =>
+            <Marker key={i}
+              position={Plant.geoPoint}
+              visible={true}
+            />
+          )}
+
         </AreaContainer>
       </IntlProvider>
     )

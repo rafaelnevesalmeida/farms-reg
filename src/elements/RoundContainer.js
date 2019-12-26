@@ -7,7 +7,7 @@ const RoundContainer = styled.div`
   height: ${props => props.height || 'auto'};
   min-height: ${props => props.minHeight || 'auto'};
   margin-top: ${props => props.marginTop || '5px'};
-  margin-bottom: ${props => props.marginBottom || null};
+  margin-bottom: ${props => props.marginBottom || '5px'};
   margin-left: ${props => props.marginLeft || null};
   margin-right: ${props => props.marginRight || null};
   padding-top: ${props => props.paddingTop || '5px'};
@@ -23,7 +23,7 @@ const RoundContainer = styled.div`
   justify-content: ${props => props.justifyContent || 'center'};
   align-content: ${props => props.alignContent || 'flex-start'};
   align-items: ${props => props.alignItems || 'flex-start'};
-  flex-grow:  ${props => props.flexGrow || '1'};
+  flex-grow:  ${props => props.flexGrow || null};
   flex-shrink: 1;
   flex-basis: ${props => props.flexBasis || 'auto'};
   flex-wrap: ${props => props.flexWrap || 'wrap'}; // -reverse;
