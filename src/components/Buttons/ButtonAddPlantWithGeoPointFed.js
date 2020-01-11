@@ -10,7 +10,7 @@ const ButtonAddPlantWithGeoPointComponent = (props) => {
 }
 
 const addPlantWithGeoPointMutation = gql`
-  mutation addPlantWithGeoPoint ($name: String! $latitude: Float! $longitude: Float! $altitude: Float!) {
+  mutation addPlantWithGeoPoint ($name: String! $latitude: Float $longitude: Float $altitude: Float) {
     addPlantWithGeoPoint (
       name: $name
       latitude: $latitude
