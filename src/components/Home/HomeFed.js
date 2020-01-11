@@ -3,16 +3,17 @@ import gql from 'graphql-tag'
 
 import Home from './HomeContexted'
 
-export const allGeoPoints = gql`
-  query allGeoPoints {
-    allGeoPoints {
+export const allPlants = gql`
+  query allPlants {
+    allPlants {
       id
-      latitude
-      longitude
-      altitude
-      time
+      geoPoint {
+        latitude
+        longitude
+      }
+      name
     }
   }
 `
 
-export default graphql(allGeoPoints)(Home)
+export default graphql(allPlants)(Home)

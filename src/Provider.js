@@ -6,6 +6,12 @@ export class ContextProvider extends React.Component {
   constructor () {
     super()
     this.state = {
+      map: null,
+      mapParams: {
+        zoom: 19,
+        mapTypeId: 'satellite',
+        center: { lat: -13.602417, lng: -47.561444 }
+      },
       lang: 'en',
       geolocation: {
         latitude: 0,
@@ -18,6 +24,15 @@ export class ContextProvider extends React.Component {
     }
     this.updateLocation = this.updateLocation.bind(this)
     this.setStateProvider = this.setStateProvider.bind(this)
+  }
+
+  setGoogleMap = map =>
+    this.setState({ map: map })
+
+  setMapZoom (zoom) {
+    let mapParams = this.state.mapParams
+    mapParams.zoom = zoom
+    this.setState({ mapParams: mapParams })
   }
 
   setStateProvider (state) {
@@ -43,10 +58,12 @@ export class ContextProvider extends React.Component {
   render () {
     return (
       <Context.Provider value={{
-        lang: this.state.lang,
+        ...this.state,
         geolocation: this.state.geolocation,
         geoPoint: this.state.geoPoint,
         updateLocation: this.updateLocation,
+        setGoogleMap: this.setGoogleMap.bind(this),
+        setMapZoom: this.setMapZoom.bind(this),
         setStateProvider: this.setStateProvider
       }}>
         {this.props.children}

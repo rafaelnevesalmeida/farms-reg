@@ -3,10 +3,11 @@ import styled from 'styled-components'
 const Label = styled.h1`
   border: 0px;
   margin: 0px;
-  margin-left: ${props => props.marginLeft || '5px'};
+  margin-left: ${props => props.marginLeft || null};
   margin-top: ${props => props.marginTop || null};
   padding-top: 3px;
-  padding-left: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
   cursor: default;
 
   text-align: ${props => props.align || 'center'};
