@@ -27,10 +27,10 @@ export default {
     'geo.label.latitude': 'Latitude',
     'geo.label.longitude': 'Longitude',
     'geo.label.altitude': 'Altitude',
-    'login.label.title': 'Login',
-    'login.label.user': 'Usuario',
+    'login.label.title': 'Autenticação',
+    'login.label.user': 'Usuário',
     'login.label.password': 'Senha',
-    'login.button.login': 'Login',
+    'login.button.login': 'Autenticar',
     'plant.label': 'Plantas'
   }
 }

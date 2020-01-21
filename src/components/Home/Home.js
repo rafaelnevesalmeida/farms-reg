@@ -1,11 +1,6 @@
 // eslint-disable-next-line
 import React from 'react'
-import { FormattedMessage, addLocaleData, IntlProvider } from 'react-intl'
-// TODO move the lang things to the app.js
-import en from 'react-intl/locale-data/en'
-import pt from 'react-intl/locale-data/pt'
-
-import messages from '../../messages'
+import { FormattedMessage } from 'react-intl'
 
 import {
   Header,
@@ -17,18 +12,11 @@ import {
   LinkButton
 } from '../../elements'
 
-import {
-  GoogleMap,
-  Marker
-} from '../../components'
-
-addLocaleData(en)
-addLocaleData(pt)
+import { GoogleMap, Marker } from '../../components'
 
 class Home extends React.Component {
   render () {
     const {
-      lang,
       data: { loading, error, allPlants }
     } = this.props
 
@@ -40,65 +28,62 @@ class Home extends React.Component {
       return <p>{error.message}</p>
     }
 
-    return ( // TODO change the visual props (backgroundColor) to modifier and move IntlProvider to App.js
-      // TODO move sensorDates to DB
-      <IntlProvider locale={lang} messages={messages[lang]} >
-        <AreaContainer>
+    return ( // TODO change the visual props (backgroundColor) to modifier
+      <AreaContainer>
+        <Header>
+          <Label>
+            <FormattedMessage id='app.label' />
+          </Label>
+        </Header>
+
+        <RoundContainer backgroundColor='#888888' >
           <Header>
             <Label>
-              <FormattedMessage id='app.label' />
+              <FormattedMessage id='plant.label' />
             </Label>
           </Header>
 
-          <RoundContainer backgroundColor='#888888' >
-            <Header>
+          <ButtonContainer>
+            <Button>
               <Label>
-                <FormattedMessage id='plant.label' />
+                <nav>
+                  <LinkButton to="/changeName">
+                    <FormattedMessage id='geo.button.new' />
+                  </LinkButton>
+                </nav>
               </Label>
-            </Header>
+            </Button>
+            {/* <Button>
+              <Label>
+                <nav>
+                  <LinkButton to="/changeName">
+                    <FormattedMessage id='geo.button.list' />
+                  </LinkButton>
+                </nav>
+              </Label>
+            </Button>
+            <Button>
+              <Label>
+                <nav>
+                  <LinkButton to="/changeName">
+                    <FormattedMessage id='geo.button.search' />
+                  </LinkButton>
+                </nav>
+              </Label>
+              </Button> */}
 
-            <ButtonContainer>
-              <Button>
-                <Label>
-                  <nav>
-                    <LinkButton to="/changeName">
-                      <FormattedMessage id='geo.button.new' />
-                    </LinkButton>
-                  </nav>
-                </Label>
-              </Button>
-              <Button>
-                <Label>
-                  <nav>
-                    <LinkButton to="/changeName">
-                      <FormattedMessage id='geo.button.list' />
-                    </LinkButton>
-                  </nav>
-                </Label>
-              </Button>
-              <Button>
-                <Label>
-                  <nav>
-                    <LinkButton to="/changeName">
-                      <FormattedMessage id='geo.button.search' />
-                    </LinkButton>
-                  </nav>
-                </Label>
-              </Button>
+          </ButtonContainer>
+        </RoundContainer>
+        <GoogleMap />
 
-            </ButtonContainer>
-          </RoundContainer>
-          <GoogleMap />
+        {allPlants.map((Plant, i) =>
+          <Marker key={i}
+            position={Plant.geoPoint}
+            visible={true}
+          />
+        )}
 
-          {allPlants.map((Plant, i) =>
-            <Marker key={i}
-              position={Plant.geoPoint}
-              visible={true}
-            />
-          )}
-
-        </AreaContainer>
-      </IntlProvider>
+      </AreaContainer>
     )
   }
 }
